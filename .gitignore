@@ -43,4 +43,4 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-app/javascript/application.js
+app/assets/javascript/application.js

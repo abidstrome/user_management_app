@@ -71,3 +71,4 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails"
 gem "font-awesome-sass"
 gem "rails-ujs"
+gem 'sassc-rails'

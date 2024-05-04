@@ -2496,36 +2496,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="sass-rails (v6.0.0) [path][gem]" type="rubylib">
-        <properties>
-          <option name="additionalInfo">
-            <AdditionalInfo>
-              <option name="authors" value="N/A" />
-              <option name="email" value="N/A" />
-              <option name="homepage" value="N/A" />
-              <option name="summary" value="N/A" />
-            </AdditionalInfo>
-          </option>
-          <option name="fromPath" value="true" />
-          <option name="name" value="sass-rails" />
-          <option name="requirePaths">
-            <list>
-              <option value="lib" />
-            </list>
-          </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/sass-rails-6.0.0" />
-          <option name="version" value="6.0.0" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/sass-rails-6.0.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/sass-rails-6.0.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="sassc (v2.4.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
