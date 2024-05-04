@@ -1,0 +1,26 @@
+.notice {
+    background-color: #ccffcc;
+    color: #006400;
+    border: 1px solid #006400;
+}
+
+.alert {
+    background-color: #ffcccc;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+}
+
+.error {
+    background-color: #ffcccc;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+}
+
+/* General style for all flash messages */
+div[role="alert"] {
+    position: relative;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

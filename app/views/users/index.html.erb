@@ -1,0 +1,142 @@
+
+<div class="flex flex-col min-h-screen justify-center items-center bg-gray-100 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-6xl">
+    <div class="bg-white shadow-md rounded my-6">
+      <div class="flex justify-between items-center py-4 px-6">
+        <%= button_to 'Block', block_users_users_path, method: :patch, form: { class: 'inline-flex items-center' }, class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded', id: 'block-users-btn' %>
+        <%= button_to 'Unblock', unblock_users_users_path, method: :patch, form: { class: 'inline-flex items-center' }, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded', id: 'unblock-users-btn' %>
+        <%= button_to 'Delete', delete_users_users_path, method: :delete, form: { class: 'inline-flex items-center', data: { confirm: 'Are you sure?' } }, class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', id: 'delete-users-btn' %>
+      </div>
+      <table class="min-w-full w-full table-fixed">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="w-1/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <input type="checkbox" id="select-all" class="form-checkbox">
+            </th>
+            <th class="w-2/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Name
+            </th>
+            <th class="w-3/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              E-Mail
+            </th>
+            <th class="w-2/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Registered at
+            </th>
+            <th class="w-2/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Last Login
+            </th>
+            <th class="w-2/12 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% @users.each do |user| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <input type="checkbox" class="user-checkbox form-checkbox" value="<%= user.id %>">
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= user.name %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= user.email %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= user.created_at.strftime('%H:%M, %d %b %Y') %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <%= user.last_login_time ? user.last_login_time.strftime('%H:%M, %d %b %Y') : 'Never' %>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-<%= user.status == 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+                  <%= user.status.capitalize %>
+                </span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectAllCheckbox = document.getElementById('select-all');
+        const userCheckboxes = document.querySelectorAll('.user-checkbox');
+
+        // Toggle all checkboxes
+        selectAllCheckbox.addEventListener('change', (e) => {
+            userCheckboxes.forEach(checkbox => {
+                checkbox.checked = e.target.checked;
+            });
+        });
+
+        function batchAction(path, method) {
+            const selectedUserIds = Array.from(userCheckboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
+            console.log("Sending data:", JSON.stringify({ user_ids: selectedUserIds })); // Correct placement of the log
+
+            if (selectedUserIds.length === 0) {
+                alert('Please select at least one user.');
+                return;
+            }
+
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            console.log("Sending to path:", path, "with method:", method); // Additional debugging info
+            fetch(path, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': token,
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ user_ids: selectedUserIds })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return response.json().then(data => {
+                            throw new Error(data.error || 'Failed to fetch');
+                        });
+                    }
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    if (data.redirect_url) {
+                        // If the server provided a redirect URL, redirect to that URL
+                        window.location.href = data.redirect_url;
+                    } else {
+                        // Otherwise, reload the page to reflect changes
+                        window.location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error: ' + error.message);
+                });
+        }
+
+        document.getElementById('block-users-btn').addEventListener('click', (event) => {
+            event.preventDefault();
+            batchAction('<%= block_users_users_path %>', 'PATCH');
+        });
+
+        document.getElementById('unblock-users-btn').addEventListener('click', (event) => {
+            event.preventDefault();
+            batchAction('<%= unblock_users_users_path %>', 'PATCH');
+        });
+
+        document.getElementById('delete-users-btn').addEventListener('click', (event) => {
+            event.preventDefault();
+            if (confirm('Are you sure you want to delete the selected users?')) {
+                batchAction('<%= delete_users_users_path %>', 'DELETE');
+            }
+        });
+    });
+
+</script>
