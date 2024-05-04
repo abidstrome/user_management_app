@@ -83,7 +83,8 @@ test:
 #
 production:
   <<: *default
-  database: postgres
+  database: railway
   username: postgres
-  password: 126480
-  host: localhost
+  password: ztnrqRJdalzqfcqUTqgYIFOaeMzCmGlP
+  host: roundhouse.proxy.rlwy.net
+  port: 23661
