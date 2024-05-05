@@ -2910,6 +2910,66 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="turbolinks (v5.2.1) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="turbolinks" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/turbolinks-5.2.1" />
+          <option name="version" value="5.2.1" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/turbolinks-5.2.1/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/turbolinks-5.2.1/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="turbolinks-source (v5.2.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="turbolinks-source" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/turbolinks-source-5.2.0" />
+          <option name="version" value="5.2.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/turbolinks-source-5.2.0/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.2.0/gems/turbolinks-source-5.2.0/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="tzinfo (v2.0.6) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
