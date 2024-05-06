@@ -17,6 +17,7 @@ module UserManagementApp
 
     config.assets.css_compressor = nil
 
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

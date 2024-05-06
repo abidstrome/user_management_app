@@ -83,8 +83,9 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['railway'] %>
-  username: <%= ENV['postgres'] %>
-  password: <%= ENV['ztnrqRJdalzqfcqUTqgYIFOaeMzCmGlP'] %>
-  host: <%= ENV['roundhouse.proxy.rlwy.net'] %>
-  port: <%= ENV['23661'] %>
+  adapter: postgresql
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: <%= ENV['PGHOST'] %>
+  port: <%= ENV['PGPORT'] %>
